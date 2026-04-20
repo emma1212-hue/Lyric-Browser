@@ -1,0 +1,215 @@
+/* --- Variables de Color y Temática Oscura --- */
+:root {
+    --bg-sidebar: rgba(20, 20, 25, 0.6); /* Oscuro translúcido tipo cristal */
+    --bg-card: rgba(30, 30, 40, 0.7);
+    --bg-card-hover: rgba(50, 50, 65, 0.9);
+    --text-main: #ffffff;
+    --text-muted: #a0a0b0;
+    --accent-color: #ffffff; /* Color para cuando los iconos se iluminan */
+}
+
+/* --- Fondo Principal --- */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* Degradado oscuro elegante y profundo */
+    background: linear-gradient(135deg, #0f172a 0%, #1e1e2f 50%, #120b29 100%);
+    height: 100vh;
+    display: flex;
+    overflow: hidden; /* Evita barras de desplazamiento */
+    color: var(--text-main);
+}
+
+/* =========================================
+   BARRA LATERAL DESPLEGABLE (OPERA STYLE)
+   ========================================= */
+.sidebar {
+    width: 60px; /* Ancho inicial (solo iconos) */
+    background: var(--bg-sidebar);
+    backdrop-filter: blur(15px); /* Efecto cristal */
+    -webkit-backdrop-filter: blur(15px);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+    gap: 10px;
+    z-index: 10;
+    /* La magia de la animación de despliegue */
+    transition: width 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    overflow: hidden; 
+}
+
+.sidebar:hover {
+    width: 200px; /* Ancho expandido al pasar el ratón */
+    box-shadow: 5px 0 20px rgba(0,0,0,0.5);
+}
+
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background 0.2s;
+    border-radius: 0 20px 20px 0;
+    margin-right: 10px;
+    white-space: nowrap; /* Evita que el texto se rompa en dos líneas */
+}
+
+.sidebar-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-icon {
+    font-size: 1.3rem;
+    min-width: 30px; 
+    display: flex;
+    justify-content: center;
+    color: var(--text-muted);
+    transition: color 0.3s;
+}
+
+.sidebar-item:hover .sidebar-icon {
+    color: var(--accent-color);
+}
+
+.sidebar-text {
+    margin-left: 15px;
+    font-size: 1rem;
+    opacity: 0; /* Texto oculto por defecto */
+    transition: opacity 0.2s;
+}
+
+.sidebar:hover .sidebar-text {
+    opacity: 1; /* El texto aparece suavemente */
+    transition-delay: 0.1s; /* Pequeño retraso para que se vea más fluido */
+}
+
+.sidebar-spacer {
+    flex-grow: 1; /* Empuja el botón de configuración hacia abajo */
+}
+
+
+/* =========================================
+   CONTENIDO CENTRAL Y BÚSQUEDA
+   ========================================= */
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.browser-title {
+    font-size: 4rem;
+    font-weight: 300;
+    margin-bottom: 40px;
+    letter-spacing: 3px;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.6); /* Sombra elegante para el título */
+}
+
+/* Barra de búsqueda estilo Píldora */
+.search-container {
+    width: 100%;
+    max-width: 600px;
+    background: rgba(255, 255, 255, 0.05); 
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    padding: 5px 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    margin-bottom: 50px;
+    backdrop-filter: blur(10px);
+    transition: background 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+
+/* Efecto cuando haces clic dentro de la barra de búsqueda */
+.search-container:focus-within {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.search-icon {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-right: 15px;
+}
+
+.search-box {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    padding: 15px 0;
+    font-size: 1.1rem;
+    background: transparent;
+    color: white;
+}
+
+.search-box::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+
+/* =========================================
+   ACCESOS DIRECTOS (TARJETAS)
+   ========================================= */
+.shortcuts-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    max-width: 800px;
+}
+
+.shortcut-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none; /* Quita el subrayado de los enlaces */
+    color: var(--text-main);
+    width: 110px;
+    height: 90px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: transform 0.2s, background 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+/* Animación al pasar el ratón por la tarjeta */
+.shortcut-card:hover {
+    transform: translateY(-5px); /* Se levanta un poco */
+    background: var(--bg-card-hover);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.shortcut-icon {
+    font-size: 2.2rem;
+    margin-bottom: 12px;
+    color: #e2e8f0; 
+    transition: transform 0.3s, color 0.3s;
+}
+
+/* El icono crece y brilla cuando el ratón está sobre la tarjeta */
+.shortcut-card:hover .shortcut-icon {
+    transform: scale(1.1);
+    color: var(--accent-color);
+}
+
+.shortcut-name {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    transition: color 0.2s;
+}
+
+.shortcut-card:hover .shortcut-name {
+    color: white;
+}

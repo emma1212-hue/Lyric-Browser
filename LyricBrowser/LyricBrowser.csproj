@@ -15,4 +15,13 @@
     <PackageReference Include="CefSharp.WinForms.NETCore" Version="120.2.70" />
   </ItemGroup>
 
+<ItemGroup>
+    <None Update="home.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="style.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

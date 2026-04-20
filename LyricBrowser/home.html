@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lyric Browser</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    
+    <div class="sidebar">
+        <div class="sidebar-item">
+            <span class="sidebar-icon"><i class="fa-regular fa-comment-dots"></i></span>
+            <span class="sidebar-text">Chat</span>
+        </div>
+        <div class="sidebar-item">
+            <span class="sidebar-icon"><i class="fa-regular fa-folder-open"></i></span>
+            <span class="sidebar-text">Archivos</span>
+        </div>
+        <div class="sidebar-spacer"></div>
+        <div class="sidebar-item">
+            <span class="sidebar-icon"><i class="fa-solid fa-gear"></i></span>
+            <span class="sidebar-text">Configuración</span>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <h1 class="browser-title">Lyric Browser</h1>
+        
+        <div class="search-container">
+            <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+            <input type="text" id="searchInput" class="search-box" placeholder="Busca en la web o escribe una URL" autofocus>
+        </div>
+
+        <div class="shortcuts-grid">
+            <a href="https://github.com" class="shortcut-card">
+                <div class="shortcut-icon"><i class="fa-brands fa-github"></i></div>
+                <div class="shortcut-name">GitHub</div>
+            </a>
+            <a href="https://youtube.com" class="shortcut-card">
+                <div class="shortcut-icon"><i class="fa-brands fa-youtube"></i></div>
+                <div class="shortcut-name">YouTube</div>
+            </a>
+            <a href="https://netflix.com" class="shortcut-card">
+                <div class="shortcut-icon"><i class="fa-solid fa-film"></i></div>
+                <div class="shortcut-name">Netflix</div>
+            </a>
+            <a href="https://reddit.com" class="shortcut-card">
+                <div class="shortcut-icon"><i class="fa-brands fa-reddit-alien"></i></div>
+                <div class="shortcut-name">Reddit</div>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const query = this.value.trim();
+                if (query) {
+                    if (query.includes('.') && !query.includes(' ')) {
+                        window.location.href = query.startsWith('http') ? query : 'https://' + query;
+                    } else {
+                        window.location.href = 'https://www.google.com/search?q=' + encodeURIComponent(query);
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
